@@ -10,7 +10,7 @@ public class FlotarEfecto : MonoBehaviour
 
     void Update()
     {
-        // Movimiento sinusoidal suave
+   
         float nuevoY = posInicial.y + Mathf.Sin(Time.time * frecuencia) * amplitud;
         transform.position = new Vector3(transform.position.x, nuevoY, transform.position.z);
     }

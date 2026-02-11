@@ -18,7 +18,7 @@ public class BalaPool : MonoBehaviour
 
     private void Start()
     {
-        // Llenamos el pool al empezar el juego
+       
         for (int i = 0; i < tamañoInicial; i++)
         {
             CrearNuevaBala();
@@ -28,14 +28,14 @@ public class BalaPool : MonoBehaviour
     private GameObject CrearNuevaBala()
     {
         GameObject bala = Instantiate(balaPrefab);
-        bala.SetActive(false); // Las creamos "apagadas"
+        bala.SetActive(false); 
         poolDeBalas.Add(bala);
         return bala;
     }
 
     public GameObject GetBala()
     {
-        // Buscamos una bala que no esté en uso
+        
         foreach (GameObject bala in poolDeBalas)
         {
             if (!bala.activeInHierarchy)
@@ -44,7 +44,7 @@ public class BalaPool : MonoBehaviour
             }
         }
 
-        // Si todas están en uso, creamos una nueva para no quedarnos cortos
+        
         return CrearNuevaBala();
     }
 }

@@ -24,7 +24,7 @@ public class BuffPool : MonoBehaviour
 
     private GameObject CrearNuevoItem(GameObject prefab, List<GameObject> lista)
     {
-        // El 'transform' hace que el clon sea hijo de este objeto (Jerarquía limpia)
+     
         GameObject obj = Instantiate(prefab, transform);
         obj.SetActive(false);
         lista.Add(obj);

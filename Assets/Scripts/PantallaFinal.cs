@@ -9,11 +9,10 @@ public class PantallaFinal : MonoBehaviour
 
     void Start()
     {
-        // Leemos la "maleta" que guardamos en el GameManager
+     
         int puntosLogrados = PlayerPrefs.GetInt("PuntajeFinal", 0);
         textoPuntaje.text = "PUNTUACIÓN TOTAL: " + puntosLogrados;
 
-        // Recuperamos el nivel (por defecto 1 si no hay nada)
         int nivel = PlayerPrefs.GetInt("NivelFinal", 1);
         textoNivel.text = "LLEGASTE AL NIVEL: " + nivel.ToString();
     }

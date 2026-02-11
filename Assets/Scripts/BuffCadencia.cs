@@ -7,7 +7,7 @@ public class BuffCadencia : MonoBehaviour
 
     void Update()
     {
-        // La batería gira para que se vea que es un ítem especial
+        
         transform.Rotate(Vector3.forward * velocidadRotacion * Time.deltaTime);
     }
 
@@ -15,7 +15,7 @@ public class BuffCadencia : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Buscamos el componente Jugador
+           
             Jugador jugador = other.GetComponent<Jugador>();
 
             if (jugador != null)
@@ -23,8 +23,7 @@ public class BuffCadencia : MonoBehaviour
                 jugador.AplicarBuffCadencia(duracionBuff);
             }
 
-            // --- CAMBIO PARA POOLING ---
-            // En lugar de Destroy(gameObject), lo desactivamos
+       
             gameObject.SetActive(false);
         }
     }

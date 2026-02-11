@@ -19,12 +19,10 @@ public class AsteroideSpawner : MonoBehaviour
 
         if (suerte < probabilidadNave && naveEnemigaPrefab != null)
         {
-            // Creamos la nave (Las naves suelen ser pocas, el Instantiate aquí está bien, 
-            // aunque podrías hacerle un Pool en el futuro si quisieras el 10 plus).
+          
             Instantiate(naveEnemigaPrefab, GenerarPosicion(), Quaternion.identity);
 
-            // NOTA: Ya no asignamos "scriptNave.prefabBateriaBuff" porque la nave 
-            // ahora usa internamente el BuffPool.Instance
+      
         }
         else
         {
@@ -36,13 +34,10 @@ public class AsteroideSpawner : MonoBehaviour
 
             script.nivel = 3;
 
-            // Decidimos si es oro
+         
             bool seraOro = (Random.Range(0f, 100f) < probabilidadOro);
             script.esOro = seraOro;
 
-            // --- LIMPIEZA REALIZADA ---
-            // Ya NO intentamos acceder a script.prefabBateriaBuff porque el script Asteroide
-            // ahora gestiona sus propios drops a través del BuffPool.Instance.GetBuff()
 
             script.velocidadDificultad = (GameManager.Instance != null) ? GameManager.Instance.multiplicadorVelocidad : 1f;
             ast.SetActive(true);

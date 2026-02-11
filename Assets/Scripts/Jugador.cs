@@ -107,7 +107,7 @@ public class Jugador : MonoBehaviour
         }
     }
 
-    // --- SISTEMA DE BUFFS Y CURACIÓN ---
+    // --- BUFFS Y CURACIÓN ---
     public void AplicarBuffCadencia(float duracion)
     {
         StopCoroutine("RutinaBuff");

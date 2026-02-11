@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int asteroidesBase = 2;
     public float multiplicadorVelocidad = 1f;
     private int puntos = 0;
-    private bool cambiandoDeNivel = false; // Evita que se disparen varios niveles a la vez
+    private bool cambiandoDeNivel = false; //ARREGLAMOS BUG DE LOS NIVELES
 
     [Header("Interfaz (UI)")]
     [SerializeField] private TextMeshProUGUI textoNivel;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator IniciarNuevoNivel()
     {
-        cambiandoDeNivel = true; // Bloqueamos el chequeo
+        cambiandoDeNivel = true; 
 
         textoNivel.text = "NIVEL " + nivelActual;
         textoNivel.gameObject.SetActive(true);
@@ -56,27 +56,26 @@ public class GameManager : MonoBehaviour
             if (spawner != null) spawner.SpawnIndividual();
         }
 
-        // Damos un pequeño margen antes de permitir el chequeo de victoria
+      
         yield return new WaitForSeconds(1f);
         cambiandoDeNivel = false;
     }
 
     public void CheckNivelCompletado()
     {
-        // Si ya estamos cambiando de nivel, no hagas nada
+       
         if (cambiandoDeNivel) return;
 
-        // Usamos una Corrutina en lugar de Invoke para tener más control
+    
         StartCoroutine(ValidarEnemigosCorrutina());
     }
 
     private IEnumerator ValidarEnemigosCorrutina()
     {
-        // Esperamos al final del frame para que los hijos de los asteroides 
-        // tengan tiempo de activarse en la jerarquía
+       
         yield return new WaitForEndOfFrame();
 
-        // 1. Contar asteroides activos
+      
         GameObject[] asteroides = GameObject.FindGameObjectsWithTag("Asteroide");
         int contadorAsteroides = 0;
         foreach (GameObject ast in asteroides)
@@ -84,22 +83,22 @@ public class GameManager : MonoBehaviour
             if (ast.activeInHierarchy) contadorAsteroides++;
         }
 
-        // 2. Contar naves enemigas
+      
         GameObject[] naves = GameObject.FindGameObjectsWithTag("EnemigoNave");
         int contadorNaves = 0;
         foreach (GameObject nave in naves)
         {
-            // Solo contamos la nave si tiene el sprite o el collider activo
+          
             if (nave.activeInHierarchy) contadorNaves++;
         }
 
-        // Solo si realmente no queda NADA, avanzamos
+     
         if (contadorAsteroides == 0 && contadorNaves == 0 && !cambiandoDeNivel)
         {
             cambiandoDeNivel = true;
             nivelActual++;
 
-            // Dificultad progresiva más suave
+        
             if (multiplicadorVelocidad < 2.5f) multiplicadorVelocidad += 0.15f;
 
             StartCoroutine(IniciarNuevoNivel());

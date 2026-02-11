@@ -77,7 +77,7 @@ public class Asteroide : MonoBehaviour
             {
                 if (BuffPool.Instance != null)
                 {
-                    // DECISIÓN: ¿Vida o Cadencia? (20% vida)
+           
                     bool soltarVida = Random.Range(0, 100) < 20;
                     GameObject buff = BuffPool.Instance.GetBuff(soltarVida);
                     if (buff != null)

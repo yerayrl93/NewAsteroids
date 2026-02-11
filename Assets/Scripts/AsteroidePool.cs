@@ -26,7 +26,7 @@ public class AsteroidePool : MonoBehaviour
         {
             if (!obj.activeInHierarchy) return obj;
         }
-        // Si el pool es pequeño, creamos uno nuevo
+      
         GameObject nuevoObj = Instantiate(asteroidePrefab);
         pool.Add(nuevoObj);
         return nuevoObj;
